@@ -17,7 +17,12 @@ export default [
         ecmaFeatures: {jsx: true}
       },
       globals: {
-        ...globals.browser
+        ...globals.browser,
+        beforeEach: "readonly",
+        describe: "readonly",
+        expect: "readonly",
+        it: "readonly",
+        vi: "readonly"
       }
     },
     plugins: {

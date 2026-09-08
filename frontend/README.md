@@ -22,7 +22,7 @@ Backend:
 
 ```powershell
 cd ..\backend
-mvn spring-boot:run
+gradlew.bat bootRun
 ```
 
 The Spring Boot agent API runs on `http://localhost:8787` and is proxied by Vite at `/api`.

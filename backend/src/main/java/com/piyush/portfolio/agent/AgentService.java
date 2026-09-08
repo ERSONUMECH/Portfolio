@@ -17,7 +17,7 @@ public class AgentService {
         ),
         new Intent(
             "automation solution",
-            List.of("automation", "automate", "workflow", "process", "integration"),
+            List.of("automation", "automate", "process", "integration"),
             "This sounds like a strong automation opportunity. I can map the current process, identify the highest-value automations, and define the integrations needed.",
             List.of("Map the current process", "Identify repetitive decision points", "Prioritize the first automation")
         ),

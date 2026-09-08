@@ -5,12 +5,12 @@ Spring Boot backend for the portfolio's `PIYUSH AI` agent.
 ## Requirements
 
 - Java 17+
-- Maven 3.9+
+- Gradle 8+
 
 ## Run
 
 ```powershell
-mvn spring-boot:run
+./gradlew bootRun
 ```
 
 The API starts on `http://localhost:8787`.
