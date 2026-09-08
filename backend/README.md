@@ -15,9 +15,29 @@ Spring Boot backend for the portfolio's `PIYUSH AI` agent.
 
 The API starts on `http://localhost:8787`.
 
-Chat submissions are stored in the file-backed H2 database at `backend/data/`.
-Each record includes the message, optional name and email, detected intent,
-agent reply, and creation timestamp.
+Business leads are stored in PostgreSQL. Set `DATABASE_URL`,
+`DATABASE_USERNAME`, and `DATABASE_PASSWORD` before starting the backend.
+
+Persona and service usage is stored in MongoDB. Set `MONGODB_URI`, for example:
+
+```powershell
+$env:MONGODB_URI="mongodb://localhost:27017/piyush_portfolio"
+```
+
+The `POST /api/persona-services` endpoint accepts a persona, selected service,
+and optional details:
+
+```json
+{
+  "persona": "entrepreneur",
+  "service": "AI & AUTOMATION",
+  "details": "Interested in automating lead follow-up"
+}
+```
+
+Chat submissions continue to be stored through the JPA persistence layer and
+include the message, optional name and email, detected intent, agent reply, and
+creation timestamp.
 
 ## Endpoints
 
