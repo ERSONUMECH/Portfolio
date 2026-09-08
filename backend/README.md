@@ -15,6 +15,10 @@ Spring Boot backend for the portfolio's `PIYUSH AI` agent.
 
 The API starts on `http://localhost:8787`.
 
+Chat submissions are stored in the file-backed H2 database at `backend/data/`.
+Each record includes the message, optional name and email, detected intent,
+agent reply, and creation timestamp.
+
 ## Endpoints
 
 - `GET /api/health`

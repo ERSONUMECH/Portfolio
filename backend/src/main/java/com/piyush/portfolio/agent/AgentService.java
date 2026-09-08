@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AgentService {
     private static final String AGENT_NAME = "PIYUSH AI";
+    private final AgentConversationRepository conversationRepository;
+
+    public AgentService(AgentConversationRepository conversationRepository) {
+        this.conversationRepository = conversationRepository;
+    }
 
     private final List<Intent> intents = List.of(
         new Intent(
@@ -23,7 +28,7 @@ public class AgentService {
         ),
         new Intent(
             "AI agent",
-            List.of("agent", "assistant", "chatbot", "copilot", "llm", "ai"),
+            List.of("agent", "assistant", "chatbot", "copilot", "llm"),
             "I can help design an AI agent with a focused role, trusted knowledge sources, useful tools, and a measurable handoff to your team.",
             List.of("Define the agent's responsibility", "List the data and tools it can access", "Design evaluation and human handoff")
         ),
@@ -39,7 +44,7 @@ public class AgentService {
         return AGENT_NAME;
     }
 
-    public AgentController.AgentResponse respond(String message) {
+    public AgentController.AgentResponse respond(String message, String name, String email) {
         String normalized = message.toLowerCase(Locale.ROOT);
         Intent intent = intents.stream()
             .filter(candidate -> candidate.terms().stream().anyMatch(normalized::contains))
@@ -51,6 +56,7 @@ public class AgentService {
                 List.of("Describe the outcome you want", "Identify who will use it", "Choose the smallest useful first version")
             ));
 
+        conversationRepository.save(new AgentConversation(message, name, email, intent.label(), intent.reply()));
         return new AgentController.AgentResponse(AGENT_NAME, intent.label(), intent.reply(), intent.nextSteps());
     }
 

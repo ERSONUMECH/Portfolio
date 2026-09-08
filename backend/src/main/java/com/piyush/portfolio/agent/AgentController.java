@@ -25,10 +25,14 @@ public class AgentController {
 
     @PostMapping("/agent/chat")
     public ResponseEntity<AgentResponse> chat(@Valid @RequestBody AgentRequest request) {
-        return ResponseEntity.ok(agentService.respond(request.message()));
+        return ResponseEntity.ok(agentService.respond(request.message(), request.name(), request.email()));
     }
 
-    public record AgentRequest(@NotBlank(message = "A message is required.") String message) {
+    public record AgentRequest(
+        @NotBlank(message = "A message is required.") String message,
+        String name,
+        String email
+    ) {
     }
 
     public record AgentResponse(String agent, String intent, String reply, java.util.List<String> nextSteps) {

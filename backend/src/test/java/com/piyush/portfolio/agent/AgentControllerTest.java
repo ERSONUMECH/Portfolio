@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,6 +20,9 @@ import org.springframework.test.web.servlet.MockMvc;
 class AgentControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private AgentConversationRepository conversationRepository;
 
     @Test
     void healthReturnsAgentStatus() throws Exception {
@@ -33,6 +37,8 @@ class AgentControllerTest {
         postMessage("I need a web application")
             .andExpect(jsonPath("$.intent").value("web application"))
             .andExpect(jsonPath("$.nextSteps.length()").value(3));
+
+        org.mockito.Mockito.verify(conversationRepository).save(org.mockito.ArgumentMatchers.any(AgentConversation.class));
     }
 
     @Test
