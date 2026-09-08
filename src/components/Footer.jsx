@@ -1,0 +1,2 @@
+import React from "react";
+export default function Footer(){return <footer><span>© {new Date().getFullYear()} Piyush Kumar. All rights reserved.</span><nav><a href="/">Home</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#business">Business</a><a href="/#journey">Journey</a><a href="/#gallery">Gallery</a><a href="/#contact">Contact</a></nav><span>Built with Passion <b>•</b> Powered by AI</span></footer>}
