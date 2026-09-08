@@ -11,8 +11,21 @@ Included:
 - MAXIMUS card uses only the visual present inside the reference screenshot; no separate MAXIMUS screenshot was supplied or attached.
 
 Run:
+
+```powershell
+cd frontend
 npm install
 npm run dev
+```
+
+Backend:
+
+```powershell
+cd ..\backend
+mvn spring-boot:run
+```
+
+The Spring Boot agent API runs on `http://localhost:8787` and is proxied by Vite at `/api`.
 
 Images:
 All images used by the app are in public/images and are derived from final1.png.

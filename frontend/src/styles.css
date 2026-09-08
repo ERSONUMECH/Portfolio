@@ -21,4 +21,5 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:14p
 @media(min-width:761px) and (max-width:1200px){.nav{padding-left:3.5%;padding-right:3.5%}.nav nav{gap:16px}.heroContent{width:52vw;padding-left:4%}.hero h1{font-size:clamp(48px,4.4vw,62px)}.heroRoles{max-width:500px}.heroCode{right:4%;transform:scale(.9);transform-origin:top right}.moving3d{right:5%;top:270px;transform:scale(.72);transform-origin:top right}.agent{right:3.5%;width:290px}}
 .hero{min-height:max(800px,100vh)}.aboutIntro{max-width:850px;margin:24px 0 0;color:#cbd0d6;font-size:12px;line-height:1.8}.aboutIntro strong{color:#f2efe8}
 @media(min-width:1201px){.hero h1{white-space:nowrap}}
+.agentMeta{display:block;margin-top:7px;color:#8f9aa6;font-size:8px;line-height:1.45}.composer input:disabled,.composer button:disabled{opacity:.55;cursor:wait}
 .heroBg{filter:saturate(1.08) brightness(1.18)}.heroTint{background:linear-gradient(90deg,rgba(2,5,8,.9) 0%,rgba(2,5,8,.62) 38%,rgba(2,5,8,.04) 74%,rgba(2,5,8,.52)),linear-gradient(180deg,rgba(3,6,10,.28),rgba(3,6,10,.62))}

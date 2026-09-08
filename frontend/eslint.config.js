@@ -29,5 +29,15 @@ export default [
       ...reactHooks.configs.flat.recommended.rules,
       "react-refresh/only-export-components": "off"
     }
+  },
+  {
+    files: ["backend/**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.node
+      }
+    }
   }
 ];
