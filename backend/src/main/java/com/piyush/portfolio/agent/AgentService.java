@@ -1,16 +1,23 @@
 package com.piyush.portfolio.agent;
 
+import com.piyush.portfolio.config.SupabaseConversationClient;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AgentService {
     private static final String AGENT_NAME = "PIYUSH AI";
     private final AgentConversationRepository conversationRepository;
+    private final ObjectProvider<SupabaseConversationClient> supabaseConversationClient;
 
-    public AgentService(AgentConversationRepository conversationRepository) {
+    public AgentService(
+        AgentConversationRepository conversationRepository,
+        ObjectProvider<SupabaseConversationClient> supabaseConversationClient
+    ) {
         this.conversationRepository = conversationRepository;
+        this.supabaseConversationClient = supabaseConversationClient;
     }
 
     private final List<Intent> intents = List.of(
@@ -56,8 +63,15 @@ public class AgentService {
                 List.of("Describe the outcome you want", "Identify who will use it", "Choose the smallest useful first version")
             ));
 
+        AgentController.AgentResponse response = new AgentController.AgentResponse(
+            AGENT_NAME,
+            intent.label(),
+            intent.reply(),
+            intent.nextSteps()
+        );
         conversationRepository.save(new AgentConversation(message, name, email, intent.label(), intent.reply()));
-        return new AgentController.AgentResponse(AGENT_NAME, intent.label(), intent.reply(), intent.nextSteps());
+        supabaseConversationClient.ifAvailable(client -> client.save(message, name, email, response));
+        return response;
     }
 
     private record Intent(String label, List<String> terms, String reply, List<String> nextSteps) {

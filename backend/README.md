@@ -39,6 +39,22 @@ Chat submissions continue to be stored through the JPA persistence layer and
 include the message, optional name and email, detected intent, agent reply, and
 creation timestamp.
 
+## Supabase
+
+Agent conversations are also mirrored to the configured Supabase REST project
+when `SUPABASE_SERVICE_ROLE_KEY` is set. Keep this secret on the backend only;
+do not place it in frontend code or commit it to the repository.
+
+```powershell
+$env:SUPABASE_SERVICE_ROLE_KEY="your-supabase-secret-key"
+./gradlew bootRun
+```
+
+The default REST project URL is already configured. Override it with
+`SUPABASE_URL` when needed. Create an `agent_conversations` table with these
+columns before enabling the mirror: `message`, `name`, `email`, `intent`,
+`reply`, and `created_at`.
+
 ## Endpoints
 
 - `GET /api/health`
