@@ -1,0 +1,8 @@
+.gradle
+build
+target
+.idea
+*.iml
+.env*
+Dockerfile
+README.md

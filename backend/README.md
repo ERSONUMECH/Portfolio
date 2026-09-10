@@ -15,6 +15,28 @@ Spring Boot backend for the portfolio's `PIYUSH AI` agent.
 
 The API starts on `http://localhost:8787`.
 
+## Docker
+
+Build the image from the backend directory:
+
+```powershell
+docker build -t piyush-portfolio-backend .
+```
+
+Run it with the required database and Supabase settings supplied at runtime:
+
+```powershell
+docker run --rm -p 8787:8787 `
+  -e DATABASE_URL="your-database-url" `
+  -e DATABASE_USERNAME="your-database-user" `
+  -e DATABASE_PASSWORD="your-database-password" `
+  -e SUPABASE_SERVICE_ROLE_KEY="your-supabase-secret-key" `
+  piyush-portfolio-backend
+```
+
+The image exposes port `8787` and does not include local environment files or
+build artifacts.
+
 Business leads are stored in PostgreSQL. Set `DATABASE_URL`,
 `DATABASE_USERNAME`, and `DATABASE_PASSWORD` before starting the backend.
 
